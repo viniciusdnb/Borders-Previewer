@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style >
+	.container{
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		height: 100vh;
+		width: 100vw;
+
+	}
+
+	.box{
+		margin: auto;
+
+	
+	}
+		
+	</style>
+	
+</head>
+<body>
+
+	border type:
+	<select id="type-border" style="width: 120px ;">
+		<option value="none">none</option>
+		<option value="hidden">hidden</option>
+		<option value="dotted">dotted</option>
+		<option value="dashed">dashed</option>
+		<option value="solid" selected="selected">solid</option>
+		<option value="double">double</option>
+		<option value="groove">groove</option>
+		<option value="ridge">ridge</option>
+		<option value="inset">inset</option>
+		<option value="outset">outset</option>
+	</select>
+	<div>
+	border size: <input type="range" name="" value="0" id="border-size"><span id="sz"></span>
+	</div>
+	<div>
+		border color : <input type="text" name="" id="border-color" placeholder="ex rgb(255, 255, 255)"> hex - rgb
+		
+	</div>
+	
+	<div>
+		width box: <input type="range" name="" id="width" value="0"  placeholder="width"><span id="wb"></span>
+	</div>
+	<div>
+		height box: <input type="range" name="" id="height" value="0" placeholder="height"><span id="hb"></span>
+	</div>
+	<div>
+		all border radius: <input type="range" name="" id="border-radius" value="0"><span id="abr"></span>
+	</div>
+
+	
+
+	<hr>
+	<div class="contaienr">
+		<div class="box"></div>
+	</div>
+	
+		
+	<script>
+		const box = document.querySelector(".box");
+		const textWidth = document.querySelector("#text-width");
+
+		const width = document.querySelector("#width");
+
+		const height = document.querySelector("#height");
+
+		const typeBorder = document.querySelector("#type-border");
+		typeBorder.addEventListener("input", border);
+
+		const borderSize = document.querySelector("#border-size");
+		borderSize.addEventListener("input", border);
+		
+		const px = document.querySelector("#sz");
+		const wb = document.querySelector("#wb");
+		const hb = document.querySelector("#hb");
+		const abr = document.querySelector("#abr")
+
+		const borderColor = document.querySelector("#border-color");
+		borderColor.addEventListener("input", border);
+
+
+
+		const borderR = document.querySelector("#border-radius");
+		borderR.addEventListener("input", function(){
+			var borderRV = borderR.value *10;
+			box.style.borderRadius = borderRV+"px";
+			abr.textContent = borderRV +"px";
+		})
+		
+		width.addEventListener("input", function() {
+			var wm = width.value * 10;
+			box.style.width = wm + "px";
+			wb.textContent = wm + "px";
+		})
+
+		height.addEventListener("input", function(){
+			var hm = height.value * 10;
+			box.style.height = hm + "px";
+			hb.textContent = hm + "px";
+		})
+
+		function border()
+		{
+			box.style.border = typeBorder.value + " " + borderSize.value +"px " + borderColor.value;
+			px.textContent = borderSize.value + "px";			
+		}
+
+	</script>
+</body>
+</html>
